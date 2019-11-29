@@ -1,0 +1,416 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+           http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+
+    <changeSet id="internalmodel" author="">
+        <createSequence sequenceName="seq_employee_id" startValue="1" incrementBy="1"/>
+        <createSequence sequenceName="seq_key_skill_id" startValue="1" incrementBy="1"/>
+        <createSequence sequenceName="seq_salary_story_id" startValue="1" incrementBy="1"/>
+        <createSequence sequenceName="seq_score_client_base_id" startValue="1" incrementBy="1"/>
+        <createSequence sequenceName="seq_claim_id" startValue="1" incrementBy="1"/>
+        <createSequence sequenceName="seq_interview_result_id" startValue="1" incrementBy="1"/>
+        <createSequence sequenceName="seq_process_definition_id" startValue="1" incrementBy="1"/>
+        <createSequence sequenceName="seq_process_instance_id" startValue="1" incrementBy="1"/>
+        <createSequence sequenceName="seq_rule_id" startValue="1" incrementBy="1"/>
+        <createSequence sequenceName="seq_status_id" startValue="1" incrementBy="1"/>
+        <createSequence sequenceName="seq_task_id" startValue="1" incrementBy="1"/>
+        <createSequence sequenceName="seq_activity_id" startValue="1" incrementBy="1"/>
+        <createSequence sequenceName="seq_chief_id" startValue="1" incrementBy="1"/>
+        <createSequence sequenceName="seq_task_history_id" startValue="1" incrementBy="1"/>
+
+
+        <createTable tableName="EMPLOYEE">
+            <column name="id" type="bigint">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="EMPLOYEE_ID" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="FIRST_NAME" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="MIDDLE_NAME" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="LAST_NAME" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="FIRING_DATE" type="DATE"/>
+            <column name="POSITION_ID" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="POSITION_NAME" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="DEPARTMENT" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="GRADE" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="CITY" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="DAYS_UNTIL_FIRING" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="CAUSE" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="SCORE5PLUS" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="CLAIM_COUNTS" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="VACATION_DAYS" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="INDIVIDUAL_SCHEDULE" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+
+        <createTable tableName="CHIEF">
+            <column name="id" type="bigint">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="EMPLOYEE_ID" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="FIRST_NAME" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="MIDDLE_NAME" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="LAST_NAME" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="DEPARTMENT" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+
+
+        <createTable tableName="STATUS">
+            <column name="id" type="bigint">
+                <constraints primaryKey="true"/>
+            </column>
+        </createTable>
+
+        <createTable tableName="CLAIM">
+            <column name="id" type="bigint">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="process_instance_id" type="bigint"/>
+            <column name="employee_id" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="claim_id" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="fire_date" type="DATE"/>
+            <column name="fire_type" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="claim_status" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="execution_status" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="employee_reason" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+
+        <createTable tableName="PROCESS_DEFINITION">
+            <column name="id" type="bigint">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="TYPE" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+
+
+        <createTable tableName="TASK">
+            <column name="id" type="bigint">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="chief_id" type="bigint"/>
+            <column name="interview_result_id" type="bigint"/>
+            <column name="process_instance_id" type="bigint"/>
+        </createTable>
+
+        <createTable tableName="PROCESS_INSTANCE">
+            <column name="id" type="bigint">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="process_definition_id" type="bigint"/>
+            <column name="claim_id" type="bigint"/>
+            <column name="employee_id" type="bigint"/>
+            <column name="status_id" type="bigint"/>
+            <column name="task_id" type="bigint"/>
+        </createTable>
+
+
+        <createTable tableName="RULE">
+            <column name="id" type="bigint">
+                <constraints primaryKey="true"/>
+            </column>
+        </createTable>
+
+        <createTable tableName="INTERVIEW_RESULT">
+            <column name="id" type="bigint">
+                <constraints primaryKey="true"/>
+            </column>
+        </createTable>
+
+
+
+        <createTable tableName="ACTIVITY">
+            <column name="id" type="bigint">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="NAME" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+
+        <createTable tableName="TASK_HISTORY">
+            <column name="id" type="bigint">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="from_task_id" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+            <column name="to_task_id" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+            <column name="cause_rule_id" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+
+        <createTable tableName="KEY_SKILL">
+            <column name="id" type="bigint">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="NAME" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+
+        <createTable tableName="SALARY_STORY">
+            <column name="id" type="bigint">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="NAME" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+
+        <createTable tableName="SCORE_CLIENT_BASE">
+            <column name="id" type="bigint">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="NAME" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+
+        <createTable tableName="EFFECTIVENESS">
+            <column name="id" type="bigint">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="year" type="int"/>
+            <column name="quarter" type="int"/>
+            <column name="km" type="varchar(255)"/>
+            <column name="abcd" type="varchar(255)"/>
+            <column name="restiveness" type="varchar(255)"/>
+            <column name="value" type="varchar(255)"/>
+            <column name="interaction" type="varchar(255)"/>
+            <column name="system_thinking" type="varchar(255)"/>
+            <column name="responsibility" type="varchar(255)"/>
+            <column name="selfConfidence" type="varchar(255)"/>
+            <column name="digitalSkills" type="varchar(255)"/>
+            <column name="teamDevelopment" type="varchar(255)"/>
+            <column name="customerCentricity" type="varchar(255)"/>
+        </createTable>
+
+        <createTable tableName="EMPLOYEE_KEY_SKILL">
+            <column name="employee_id" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+            <column name="key_skill_id" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+
+        <createTable tableName="EMPLOYEE_EFFECTIVENESS">
+            <column name="employee_id" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+            <column name="effectiveness_id" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+
+        <createTable tableName="EMPLOYEE_SCORE_CLIENT_BASE">
+            <column name="employee_id" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+            <column name="score_client_base_id" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+
+        <createTable tableName="EMPLOYEE_SALARY_STORY">
+            <column name="employee_id" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+            <column name="salary_story_id" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+
+
+        <!-- CLAIM -->
+        <addForeignKeyConstraint
+                baseTableName="CLAIM"
+                baseColumnNames="process_instance_id"
+                constraintName="fk_CLAIM_TO_PROCESS_INSTANCE"
+                referencedTableName="PROCESS_INSTANCE"
+                referencedColumnNames="id"/>
+
+        <!-- TASK -->
+        <addForeignKeyConstraint
+                baseTableName="TASK"
+                baseColumnNames="chief_id"
+                constraintName="fk_TASK_TO_CHIEF"
+                referencedTableName="CHIEF"
+                referencedColumnNames="id"/>
+        <addForeignKeyConstraint
+                baseTableName="TASK"
+                baseColumnNames="interview_result_id"
+                constraintName="FK_TASK_TO_INTERVIEW_RESULT"
+                referencedTableName="INTERVIEW_RESULT"
+                referencedColumnNames="id"/>
+        <addForeignKeyConstraint
+                baseTableName="TASK"
+                baseColumnNames="process_instance_id"
+                constraintName="FK_TASK_TO_PROCESS_INSTANCE"
+                referencedTableName="PROCESS_INSTANCE"
+                referencedColumnNames="id"/>
+
+        <!-- TASK_HISTORY -->
+        <addForeignKeyConstraint
+                baseTableName="TASK_HISTORY"
+                baseColumnNames="from_task_id"
+                constraintName="fk_FROM_TASK_TO_TASK"
+                referencedTableName="TASK"
+                referencedColumnNames="id"/>
+        <addForeignKeyConstraint
+                baseTableName="TASK_HISTORY"
+                baseColumnNames="to_task_id"
+                constraintName="fk_TO_TASK_TO_TASK"
+                referencedTableName="TASK"
+                referencedColumnNames="id"/>
+        <addForeignKeyConstraint
+                baseTableName="TASK_HISTORY"
+                baseColumnNames="cause_rule_id"
+                constraintName="fk_CAUSE_RULE_TO_RULE"
+                referencedTableName="RULE"
+                referencedColumnNames="id"/>
+
+        <!-- PROCESS_INSTANCE -->
+        <addForeignKeyConstraint
+                baseTableName="PROCESS_INSTANCE"
+                baseColumnNames="process_definition_id"
+                constraintName="fk_PROCESS_INSTANCE_TO_PROCESS_DEFINITION"
+                referencedTableName="PROCESS_DEFINITION"
+                referencedColumnNames="id"/>
+        <addForeignKeyConstraint
+                baseTableName="PROCESS_INSTANCE"
+                baseColumnNames="claim_id"
+                constraintName="fk_PROCESS_INSTANCE_TO_CLAIM"
+                referencedTableName="CLAIM"
+                referencedColumnNames="id"/>
+        <addForeignKeyConstraint
+                baseTableName="PROCESS_INSTANCE"
+                baseColumnNames="employee_id"
+                constraintName="fk_PROCESS_INSTANCE_TO_EMPLOYEE"
+                referencedTableName="EMPLOYEE"
+                referencedColumnNames="id"/>
+        <addForeignKeyConstraint
+                baseTableName="PROCESS_INSTANCE"
+                baseColumnNames="status_id"
+                constraintName="fk_PROCESS_INSTANCE_TO_STATUS"
+                referencedTableName="STATUS"
+                referencedColumnNames="id"/>
+        <addForeignKeyConstraint
+                baseTableName="PROCESS_INSTANCE"
+                baseColumnNames="task_id"
+                constraintName="fk_PROCESS_INSTANCE_TO_TASK"
+                referencedTableName="TASK"
+                referencedColumnNames="id"/>
+
+        <addForeignKeyConstraint
+                baseTableName="EMPLOYEE_SCORE_CLIENT_BASE"
+                baseColumnNames="employee_id"
+                constraintName="fk_EMPLOYEE_SCORE_CLIENT_BASE_TO_EMPLOYEE"
+                referencedTableName="EMPLOYEE"
+                referencedColumnNames="id"/>
+        <addForeignKeyConstraint
+                baseTableName="EMPLOYEE_SCORE_CLIENT_BASE"
+                baseColumnNames="score_client_base_id"
+                constraintName="fk_EMPLOYEE_SCORE_CLIENT_BASE_TO_SCORE_CLIENT_BASE"
+                referencedTableName="SCORE_CLIENT_BASE"
+                referencedColumnNames="id"/>
+
+        <addForeignKeyConstraint
+                baseTableName="EMPLOYEE_SALARY_STORY"
+                baseColumnNames="employee_id"
+                constraintName="fk_EMPLOYEE_SALARY_STORY_TO_EMPLOYEE"
+                referencedTableName="EMPLOYEE"
+                referencedColumnNames="id"/>
+        <addForeignKeyConstraint
+                baseTableName="EMPLOYEE_SALARY_STORY"
+                baseColumnNames="salary_story_id"
+                constraintName="fk_EMPLOYEE_SALARY_STORY_TO_SALARY_STORY"
+                referencedTableName="SALARY_STORY"
+                referencedColumnNames="id"/>
+
+        <addForeignKeyConstraint
+                baseTableName="EMPLOYEE_EFFECTIVENESS"
+                baseColumnNames="employee_id"
+                constraintName="fk_EMPLOYEE_EFFECTIVENESS_TO_EMPLOYEE"
+                referencedTableName="EMPLOYEE"
+                referencedColumnNames="id"/>
+        <addForeignKeyConstraint
+                baseTableName="EMPLOYEE_EFFECTIVENESS"
+                baseColumnNames="effectiveness_id"
+                constraintName="fk_EMPLOYEE_EFFECTIVENESS_TO_EFFECTIVENESS"
+                referencedTableName="EFFECTIVENESS"
+                referencedColumnNames="id"/>
+
+        <addForeignKeyConstraint
+                baseTableName="EMPLOYEE_KEY_SKILL"
+                baseColumnNames="employee_id"
+                constraintName="fk_EMPLOYEE_KEY_SKILL_TO_EMPLOYEE"
+                referencedTableName="EMPLOYEE"
+                referencedColumnNames="id"/>
+        <addForeignKeyConstraint
+                baseTableName="EMPLOYEE_KEY_SKILL"
+                baseColumnNames="key_skill_id"
+                constraintName="fk_EMPLOYEE_KEY_SKILL_TO_KEY_SKILL"
+                referencedTableName="KEY_SKILL"
+                referencedColumnNames="id"/>
+
+    </changeSet>
+</databaseChangeLog>

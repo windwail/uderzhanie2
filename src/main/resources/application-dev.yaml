@@ -1,0 +1,31 @@
+spring:
+  profiles:
+    active: dev
+  datasource:
+    url: jdbc:postgresql://localhost:5432/uderganiye
+    username: uderganiye
+    password: uderganiye
+    driver-class-name: org.postgresql.Driver
+    initialization-mode: ALWAYS
+  flyway:
+    enabled: true
+  liquibase:
+    default-schema: public
+    enabled: true
+    drop-first: true
+  jpa:
+    properties:
+      hibernate:
+        default_schema: public
+        temp:
+          use_jdbc_metadata_defaults: false
+    database-platform: org.hibernate.dialect.PostgreSQL9Dialect
+ #   hibernate:
+ #     ddl-auto: validate
+server:
+  servlet:
+    session:
+      cookie:
+        name: JSESSIONID
+        #mas-age: 86400
+#60 seconds * 60 minutes * 24 hours = 1 day = 86400 seconds

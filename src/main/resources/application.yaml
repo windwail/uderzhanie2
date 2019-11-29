@@ -1,0 +1,21 @@
+spring:
+  profiles:
+    active: dev
+
+  liquibase:
+    changeLog: classpath:db/changelog/liquibase-master.xml
+    enabled: true
+
+  jackson:
+    serialization:
+      WRITE_DATES_AS_TIMESTAMPS: false
+      FAIL_ON_EMPTY_BEANS: false
+    default-property-inclusion: non_null
+
+  messages:
+    basename: message-bundle
+
+  jpa:
+    hibernate:
+      ddl-auto: none
+
