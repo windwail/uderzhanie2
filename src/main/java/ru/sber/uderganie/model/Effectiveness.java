@@ -3,6 +3,7 @@ package ru.sber.uderganie.model;
 import lombok.*;
 
 import javax.persistence.*;
+import java.util.Set;
 
 @Data
 
@@ -10,13 +11,13 @@ import javax.persistence.*;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-@EqualsAndHashCode(of = "id")
+@EqualsAndHashCode
 @Table(name = "EFFECTIVENESS")
 public class Effectiveness {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq_key_skill_id")
-    @SequenceGenerator(name = "seq_key_skill_id", sequenceName = "seq_key_skill_id", allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq_effectiveness_id")
+    @SequenceGenerator(name = "seq_effectiveness_id", sequenceName = "seq_effectiveness_id", allocationSize = 1)
     private Long id;
 
     private Integer year;

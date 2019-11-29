@@ -11,6 +11,7 @@ import java.util.Set;
 @Entity
 @Getter
 @Setter
+@EqualsAndHashCode
 @Table(name = "PROCESS_INSTANCE")
 public class ProcessInstance {
 

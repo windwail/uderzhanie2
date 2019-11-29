@@ -51,13 +51,13 @@ public class EmployeeRepositoryTest {
         ks2 = entityManager.persistAndFlush(new KeySkill("KeySkill2"));
         ks3 = entityManager.persistAndFlush(new KeySkill("KeySkill3"));
 
-        ss1 = entityManager.persistAndFlush(new SalaryStory("SalaryStory1"));
-        ss2 = entityManager.persistAndFlush(new SalaryStory("SalaryStory2"));
-        ss3 = entityManager.persistAndFlush(new SalaryStory("SalaryStory3"));
-
-        ef1 = entityManager.persistAndFlush(new Effectiveness("Effectiveness1"));
-        ef2 = entityManager.persistAndFlush(new Effectiveness("Effectiveness2"));
-        ef3 = entityManager.persistAndFlush(new Effectiveness("Effectiveness3"));
+//        ss1 = entityManager.persistAndFlush(new SalaryStory("SalaryStory1"));
+//        ss2 = entityManager.persistAndFlush(new SalaryStory("SalaryStory2"));
+//        ss3 = entityManager.persistAndFlush(new SalaryStory("SalaryStory3"));
+//
+//        ef1 = entityManager.persistAndFlush(new Effectiveness("Effectiveness1"));
+//        ef2 = entityManager.persistAndFlush(new Effectiveness("Effectiveness2"));
+//        ef3 = entityManager.persistAndFlush(new Effectiveness("Effectiveness3"));
 
         scb1 = entityManager.persistAndFlush(new ScoreClientBase("ScoreClientBase1"));
         scb2 = entityManager.persistAndFlush(new ScoreClientBase("ScoreClientBase2"));

@@ -4,6 +4,7 @@ package ru.sber.uderganie.model;
 import lombok.*;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 
 @Data
 
@@ -11,7 +12,7 @@ import javax.persistence.*;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-@EqualsAndHashCode(of = "id")
+@EqualsAndHashCode
 @Table(name = "SALARY_STORY")
 public class SalaryStory {
 
@@ -20,9 +21,22 @@ public class SalaryStory {
     @SequenceGenerator(name = "seq_salary_story_id", sequenceName = "seq_salary_story_id", allocationSize = 1)
     private Long id;
 
-    public SalaryStory(String name) {
-        this.name = name;
-    }
+    LocalDate fromDate;
+    LocalDate toDate;
+    String salary;
 
-    private String name;
+    // 180т.р.-290т.р
+    String salaryBound;
+
+    // 1 560 940р.
+    String budget;
+
+    // +15%
+    String salaryChangePercent;
+
+    // 230 000 -> 265 000
+    String salaryChange;
+
+    // true
+    String positionChange;
 }

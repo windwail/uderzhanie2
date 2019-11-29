@@ -11,7 +11,7 @@ import javax.persistence.*;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-@EqualsAndHashCode(of = "id")
+@EqualsAndHashCode
 @Table(name = "SCORE_CLIENT_BASE")
 public class ScoreClientBase {
 

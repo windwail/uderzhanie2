@@ -13,7 +13,7 @@ import java.util.Set;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-@EqualsAndHashCode(of = "id")
+@EqualsAndHashCode
 @Table(name = "EMPLOYEE")
 public class Employee {
 
@@ -22,10 +22,7 @@ public class Employee {
     @SequenceGenerator(name = "seq_employee_id", sequenceName = "seq_employee_id", allocationSize = 1)
     private Long id;
 
-    @ManyToMany(cascade = {
-            CascadeType.PERSIST,
-            CascadeType.MERGE
-    })
+    @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(name = "employee_key_skill",
             joinColumns = @JoinColumn(name = "employee_id"),
             inverseJoinColumns = @JoinColumn(name = "key_skill_id")
@@ -33,20 +30,14 @@ public class Employee {
     private Set<KeySkill> keySkills = new HashSet<>();
 
 
-    @ManyToMany(cascade = {
-            CascadeType.PERSIST,
-            CascadeType.MERGE
-    })
+    @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(name = "employee_score_client_base",
             joinColumns = @JoinColumn(name = "employee_id"),
             inverseJoinColumns = @JoinColumn(name = "score_client_base_id")
     )
     private Set<ScoreClientBase> scoreClientBase = new HashSet<>();
 
-    @ManyToMany(cascade = {
-            CascadeType.PERSIST,
-            CascadeType.MERGE
-    })
+    @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(name = "employee_effectiveness",
             joinColumns = @JoinColumn(name = "employee_id"),
             inverseJoinColumns = @JoinColumn(name = "effectiveness_id")
@@ -54,10 +45,7 @@ public class Employee {
     private Set<Effectiveness> effectiveness = new HashSet<>();
 
 
-    @ManyToMany(cascade = {
-            CascadeType.PERSIST,
-            CascadeType.MERGE
-    })
+    @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(name = "employee_salary_story",
             joinColumns = @JoinColumn(name = "employee_id"),
             inverseJoinColumns = @JoinColumn(name = "salary_story_id")

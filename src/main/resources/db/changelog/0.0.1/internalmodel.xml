@@ -20,6 +20,7 @@
         <createSequence sequenceName="seq_activity_id" startValue="1" incrementBy="1"/>
         <createSequence sequenceName="seq_chief_id" startValue="1" incrementBy="1"/>
         <createSequence sequenceName="seq_task_history_id" startValue="1" incrementBy="1"/>
+        <createSequence sequenceName="seq_effectiveness_id" startValue="1" incrementBy="1"/>
 
 
         <createTable tableName="EMPLOYEE">
@@ -210,9 +211,15 @@
             <column name="id" type="bigint">
                 <constraints primaryKey="true"/>
             </column>
-            <column name="NAME" type="varchar(255)">
-                <constraints nullable="false"/>
-            </column>
+            <column name="from_date" type="DATE"/>
+            <column name="to_date" type="DATE"/>
+            <column name="salary" type="varchar(255)"/>
+            <column name="salary_bound" type="varchar(255)"/>
+            <column name="budget" type="varchar(255)"/>
+            <column name="salary_change_percent" type="varchar(255)"/>
+            <column name="salary_change" type="varchar(255)"/>
+            <column name="position_change" type="varchar(255)"/>
+
         </createTable>
 
         <createTable tableName="SCORE_CLIENT_BASE">
@@ -231,16 +238,17 @@
             <column name="year" type="int"/>
             <column name="quarter" type="int"/>
             <column name="km" type="varchar(255)"/>
+            <column name="it" type="varchar(255)"/>
             <column name="abcd" type="varchar(255)"/>
             <column name="restiveness" type="varchar(255)"/>
             <column name="value" type="varchar(255)"/>
             <column name="interaction" type="varchar(255)"/>
             <column name="system_thinking" type="varchar(255)"/>
             <column name="responsibility" type="varchar(255)"/>
-            <column name="selfConfidence" type="varchar(255)"/>
-            <column name="digitalSkills" type="varchar(255)"/>
-            <column name="teamDevelopment" type="varchar(255)"/>
-            <column name="customerCentricity" type="varchar(255)"/>
+            <column name="self_confidence" type="varchar(255)"/>
+            <column name="digital_skills" type="varchar(255)"/>
+            <column name="team_development" type="varchar(255)"/>
+            <column name="customer_centricity" type="varchar(255)"/>
         </createTable>
 
         <createTable tableName="EMPLOYEE_KEY_SKILL">
