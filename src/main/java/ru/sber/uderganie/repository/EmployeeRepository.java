@@ -7,4 +7,6 @@ import ru.sber.uderganie.model.Employee;
 @Repository
 public interface EmployeeRepository extends JpaRepository<Employee, Long> {
 
+    Employee findByEmployeeId(String employeeId);
+
 }
