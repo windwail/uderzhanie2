@@ -6,4 +6,6 @@ import ru.sber.uderganie.model.ProcessDefinition;
 
 @Repository
 public interface ProcessDefinitionRepository extends JpaRepository<ProcessDefinition, Long> {
+
+    ProcessDefinition findByType(ProcessDefinition.ProcessType type);
 }

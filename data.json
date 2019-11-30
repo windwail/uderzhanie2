@@ -1,0 +1,11 @@
+Example claim:
+
+{
+  "id": 3,
+  "employeeId": "1",
+  "fireDate": "2019-12-12",
+  "fireType": "Не устроил оклад",
+  "claimStatus": "NEW",
+  "executionStatus": "В работе",
+  "employeeReason": "По собственному желанию"
+}

@@ -49,7 +49,7 @@ public class UderganieApplicationTests {
 
         Claim c = Claim.builder()
                 .claimId("claimId")
-                .claimStatus("claimStatus")
+                .claimStatus(Claim.ClaimStatus.NEW)
                 .employeeId("employeeId")
                 .employeeReason("employeeReason")
                 .executionStatus("executionStatus")
@@ -62,7 +62,7 @@ public class UderganieApplicationTests {
 
         Claim c2 = Claim.builder()
                 .claimId("claimId")
-                .claimStatus("claimStatus")
+                .claimStatus(Claim.ClaimStatus.NEW)
                 .employeeId("employeeId")
                 .employeeReason("employeeReason")
                 .executionStatus("executionStatus")

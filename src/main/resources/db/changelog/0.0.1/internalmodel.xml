@@ -15,7 +15,6 @@
         <createSequence sequenceName="seq_process_definition_id" startValue="1" incrementBy="1"/>
         <createSequence sequenceName="seq_process_instance_id" startValue="1" incrementBy="1"/>
         <createSequence sequenceName="seq_rule_id" startValue="1" incrementBy="1"/>
-        <createSequence sequenceName="seq_status_id" startValue="1" incrementBy="1"/>
         <createSequence sequenceName="seq_task_id" startValue="1" incrementBy="1"/>
         <createSequence sequenceName="seq_activity_id" startValue="1" incrementBy="1"/>
         <createSequence sequenceName="seq_chief_id" startValue="1" incrementBy="1"/>
@@ -96,13 +95,6 @@
             </column>
         </createTable>
 
-
-        <createTable tableName="STATUS">
-            <column name="id" type="bigint">
-                <constraints primaryKey="true"/>
-            </column>
-        </createTable>
-
         <createTable tableName="CLAIM">
             <column name="id" type="bigint">
                 <constraints primaryKey="true"/>
@@ -111,9 +103,7 @@
             <column name="employee_id" type="varchar(255)">
                 <constraints nullable="false"/>
             </column>
-            <column name="claim_id" type="varchar(255)">
-                <constraints nullable="false"/>
-            </column>
+            <column name="claim_id" type="varchar(255)"/>
             <column name="fire_date" type="DATE"/>
             <column name="fire_type" type="varchar(255)">
                 <constraints nullable="false"/>
@@ -127,6 +117,7 @@
             <column name="employee_reason" type="varchar(255)">
                 <constraints nullable="false"/>
             </column>
+            <column name="processed_date" type="DATETIME"/>
         </createTable>
 
         <createTable tableName="PROCESS_DEFINITION">
@@ -155,8 +146,9 @@
             <column name="process_definition_id" type="bigint"/>
             <column name="claim_id" type="bigint"/>
             <column name="employee_id" type="bigint"/>
-            <column name="status_id" type="bigint"/>
             <column name="task_id" type="bigint"/>
+            <column name="active" type="boolean"/>
+            <column name="status" type="varchar(255)"/>
         </createTable>
 
 
@@ -354,12 +346,6 @@
                 baseColumnNames="employee_id"
                 constraintName="fk_PROCESS_INSTANCE_TO_EMPLOYEE"
                 referencedTableName="EMPLOYEE"
-                referencedColumnNames="id"/>
-        <addForeignKeyConstraint
-                baseTableName="PROCESS_INSTANCE"
-                baseColumnNames="status_id"
-                constraintName="fk_PROCESS_INSTANCE_TO_STATUS"
-                referencedTableName="STATUS"
                 referencedColumnNames="id"/>
         <addForeignKeyConstraint
                 baseTableName="PROCESS_INSTANCE"

@@ -12,7 +12,7 @@ spring:
   liquibase:
     default-schema: public
     enabled: true
-    #drop-first: true
+    drop-first: true
   jpa:
     properties:
       hibernate:

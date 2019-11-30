@@ -14,4 +14,6 @@ public interface ClaimRepository extends JpaRepository<Claim, Long> {
 
     List<Claim> findAllByProcessInstanceIsNull();
 
+    List<Claim> findAllByClaimStatus(Claim.ClaimStatus status);
+
 }

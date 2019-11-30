@@ -190,5 +190,16 @@ public class Initial {
 
         employeeRepository.save(e);
 
+        Claim claim = new Claim();
+        claim.setClaimStatus(Claim.ClaimStatus.NEW);
+        claim.setEmployeeId(e.getEmployeeId());
+        claim.setEmployeeReason("По собственному желанию");
+        claim.setFireDate(LocalDate.of(2019, 12,12));
+        claim.setExecutionStatus("В работе");
+        claim.setFireType("Не устроил оклад");
+
+        claimRepository.save(claim);
+
+
     }
 }

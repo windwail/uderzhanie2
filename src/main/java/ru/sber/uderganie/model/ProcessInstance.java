@@ -21,24 +21,23 @@ public class ProcessInstance {
     private Long id;
 
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
-    @JoinColumn(name = "process_definition_id", nullable = false)
+    @JoinColumn(name = "process_definition_id")
     private ProcessDefinition definition;
 
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
-    @JoinColumn(name = "claim_id", nullable = false)
+    @JoinColumn(name = "claim_id")
     private Claim claim;
 
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
-    @JoinColumn(name = "employee_id", nullable = false)
+    @JoinColumn(name = "employee_id")
     private Employee employee;
 
-    @ManyToOne(optional = false, fetch = FetchType.LAZY)
-    @JoinColumn(name = "status_id", nullable = false)
+    @Enumerated(EnumType.STRING)
     private Status status;
 
     @OneToMany(mappedBy = "processInstance", cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH}, fetch = FetchType.EAGER, orphanRemoval = true)
     private Set<Task> tasks = new HashSet<>();
 
-
+    Boolean active;
 
 }

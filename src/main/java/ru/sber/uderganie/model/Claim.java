@@ -4,6 +4,7 @@ import lombok.*;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @Data
 @Entity
@@ -13,6 +14,11 @@ import java.time.LocalDate;
 @EqualsAndHashCode
 @Table(name = "CLAIM")
 public class Claim {
+
+    public enum ClaimStatus {
+        NEW,
+        PROCESSED
+    }
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq_claim_id")
@@ -36,7 +42,11 @@ public class Claim {
     String fireType;
 
     // Статус заявления
-    String claimStatus;
+    @Enumerated(EnumType.STRING)
+    ClaimStatus claimStatus;
+
+    // Время последней смены статуса. Время обработки.
+    LocalDateTime processedDate;
 
     // Статус исполнения
     String executionStatus;
