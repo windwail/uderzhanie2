@@ -17,7 +17,8 @@ public class Claim {
 
     public enum ClaimStatus {
         NEW,
-        PROCESSED
+        PROCESSED,
+        ERROR
     }
 
     @Id
@@ -48,10 +49,16 @@ public class Claim {
     // Время последней смены статуса. Время обработки.
     LocalDateTime processedDate;
 
+    // Ошибка при обработке.
+    String processedError;
+
     // Статус исполнения
     String executionStatus;
 
     // Причина указанная сотрудником
     String employeeReason;
+
+    Long interval;
+
 
 }

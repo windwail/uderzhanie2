@@ -32,7 +32,7 @@ public class ClaimRepositoryTest {
     public void testClaim() throws Exception {
         LocalDate now = LocalDate.now();
 
-        ProcessInstance pi = new ProcessInstance();
+        ProcessInstance pi =  ProcessInstance.builder().build();
         pi = entityManager.persistAndFlush(pi);
 
         Claim c = Claim.builder()
@@ -67,7 +67,7 @@ public class ClaimRepositoryTest {
 
         LocalDate now = LocalDate.now();
 
-        ProcessInstance pi = new ProcessInstance();
+        ProcessInstance pi = ProcessInstance.builder().build();
         processInstanceRepository.save(pi);
 
         Claim c = Claim.builder()

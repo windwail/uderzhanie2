@@ -44,7 +44,7 @@ public class UderganieApplicationTests {
 
         LocalDate now = LocalDate.now();
 
-        ProcessInstance pi = new ProcessInstance();
+        ProcessInstance pi = ProcessInstance.builder().build();
         processInstanceRepository.save(pi);
 
         Claim c = Claim.builder()

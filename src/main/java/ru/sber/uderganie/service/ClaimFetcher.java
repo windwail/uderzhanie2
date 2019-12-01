@@ -1,5 +1,8 @@
 package ru.sber.uderganie.service;
 
+import groovy.lang.Binding;
+import groovy.lang.GroovyShell;
+import jdk.nashorn.tools.Shell;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,19 +45,33 @@ public class ClaimFetcher {
 
             Employee employee = employeeService.findEmployee(claim.getEmployeeId());
 
-            ProcessInstance newProcess = new ProcessInstance();
+            // Если не получилось найти сотрудинка.
+            if(employee == null) {
+                String error = "Cant fetch employee with id "+ claim.getEmployeeId();
+                log.error(error);
+                claim.setProcessedError(error);
+                claim.setClaimStatus(Claim.ClaimStatus.ERROR);
+                claimRepository.save(claim);
+                continue;
+            }
+
+            // Глушим все процессы.
+            processInstanceRepository.markAllProcessInstancesActive(employee, false);
+
+            ProcessInstance newProcess = ProcessInstance.builder().build();
             newProcess.setClaim(claim);
-            newProcess.setDefinition(processDefinition);
-            newProcess.setStatus(Status.NEW);
+            //newProcess.setDefinition(processDefinition);
+            newProcess.setStatus(ProcessInstance.Status.NEW);
             newProcess.setEmployee(employee);
 
             claim.setClaimStatus(Claim.ClaimStatus.PROCESSED);
             claim.setProcessInstance(newProcess);
             claimRepository.save(claim);
 
-
             processInstanceRepository.save(newProcess);
             log.info("Claim "+claim.getId()+" processed. ProcessInstance created.");
         }
     }
+
+
 }

@@ -17,7 +17,6 @@
         <createSequence sequenceName="seq_rule_id" startValue="1" incrementBy="1"/>
         <createSequence sequenceName="seq_task_id" startValue="1" incrementBy="1"/>
         <createSequence sequenceName="seq_activity_id" startValue="1" incrementBy="1"/>
-        <createSequence sequenceName="seq_chief_id" startValue="1" incrementBy="1"/>
         <createSequence sequenceName="seq_task_history_id" startValue="1" incrementBy="1"/>
         <createSequence sequenceName="seq_effectiveness_id" startValue="1" incrementBy="1"/>
 
@@ -74,27 +73,6 @@
             </column>
         </createTable>
 
-        <createTable tableName="CHIEF">
-            <column name="id" type="bigint">
-                <constraints primaryKey="true"/>
-            </column>
-            <column name="EMPLOYEE_ID" type="varchar(255)">
-                <constraints nullable="false"/>
-            </column>
-            <column name="FIRST_NAME" type="varchar(255)">
-                <constraints nullable="false"/>
-            </column>
-            <column name="MIDDLE_NAME" type="varchar(255)">
-                <constraints nullable="false"/>
-            </column>
-            <column name="LAST_NAME" type="varchar(255)">
-                <constraints nullable="false"/>
-            </column>
-            <column name="DEPARTMENT" type="varchar(255)">
-                <constraints nullable="false"/>
-            </column>
-        </createTable>
-
         <createTable tableName="CLAIM">
             <column name="id" type="bigint">
                 <constraints primaryKey="true"/>
@@ -118,6 +96,8 @@
                 <constraints nullable="false"/>
             </column>
             <column name="processed_date" type="DATETIME"/>
+            <column name="processed_error" type="varchar(255)"/>
+            <column name="interval" type="bigint"/>
         </createTable>
 
         <createTable tableName="PROCESS_DEFINITION">
@@ -137,6 +117,10 @@
             <column name="chief_id" type="bigint"/>
             <column name="interview_result_id" type="bigint"/>
             <column name="process_instance_id" type="bigint"/>
+            <column name="active" type="boolean"/>
+            <column name="do_until" type="DATETIME"/>
+            <column name="status" type="varchar(255)"/>
+
         </createTable>
 
         <createTable tableName="PROCESS_INSTANCE">
@@ -149,6 +133,12 @@
             <column name="task_id" type="bigint"/>
             <column name="active" type="boolean"/>
             <column name="status" type="varchar(255)"/>
+            <column name="type" type="varchar(255)"/>
+
+            <column name="chief_id" type="varchar(255)"/>
+            <column name="chief_plus_id" type="varchar(255)"/>
+            <column name="bphr_id" type="varchar(255)"/>
+
         </createTable>
 
 
@@ -162,6 +152,7 @@
             <column name="id" type="bigint">
                 <constraints primaryKey="true"/>
             </column>
+            <column name="result" type="varchar(255)"/>
         </createTable>
 
 
@@ -289,12 +280,6 @@
                 referencedColumnNames="id"/>
 
         <!-- TASK -->
-        <addForeignKeyConstraint
-                baseTableName="TASK"
-                baseColumnNames="chief_id"
-                constraintName="fk_TASK_TO_CHIEF"
-                referencedTableName="CHIEF"
-                referencedColumnNames="id"/>
         <addForeignKeyConstraint
                 baseTableName="TASK"
                 baseColumnNames="interview_result_id"

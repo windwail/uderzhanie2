@@ -9,20 +9,29 @@ import java.util.HashSet;
 import java.util.Set;
 
 @Entity
-@Getter
-@Setter
+@Data
+@Builder
 @EqualsAndHashCode
 @Table(name = "PROCESS_INSTANCE")
 public class ProcessInstance {
+
+    public enum Status {
+        NEW,
+        INTERRUPTED,
+        DONE_HOLDED,
+        DONE_CANT_HOLD,
+        DONE_NOT_APPROPRIATE,
+        DONE_OUTDATED
+    }
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq_process_instance_id")
     @SequenceGenerator(name = "seq_process_instance_id", sequenceName = "seq_process_instance_id", allocationSize = 1)
     private Long id;
 
-    @ManyToOne(optional = false, fetch = FetchType.LAZY)
-    @JoinColumn(name = "process_definition_id")
-    private ProcessDefinition definition;
+//    @ManyToOne(optional = false, fetch = FetchType.LAZY)
+//    @JoinColumn(name = "process_definition_id")
+//    private ProcessDefinition definition;
 
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     @JoinColumn(name = "claim_id")
@@ -39,5 +48,11 @@ public class ProcessInstance {
     private Set<Task> tasks = new HashSet<>();
 
     Boolean active;
+
+    String chiefId;
+
+    String chiefPlusId;
+
+    String bphrId;
 
 }
