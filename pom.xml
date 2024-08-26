@@ -27,7 +27,7 @@
         <sap.cloud.api.version>3.78.15</sap.cloud.api.version>
         <sap.cloud.s4hana.version>2.13.2</sap.cloud.s4hana.version>
         <com.sap.hana.cloud-version>1.0.4.RELEASE</com.sap.hana.cloud-version>
-        <springfox.version>2.9.2</springfox.version>
+        <springfox.version>2.10.0</springfox.version>
         <liquibase.version>3.6.3</liquibase.version>
         <poi.version>4.1.0</poi.version>
 
